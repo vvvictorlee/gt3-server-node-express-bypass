@@ -75,6 +75,8 @@ app.get("/register", async function (req, res) {
     let result;
     if (bypasscache === "success"){
         result = await gtLib.register(digestmod, params);
+        console.log(req.ip)
+        client.set(req.ip, new Date().getTime());
     }else{
         result = await gtLib.localRegister();
     }
